@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Replace 'your_file_path' with the path where you saved the Excel file
+df = pd.read_excel('your_file_path.xlsx')
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Plot the original data
+plt.plot(df['Date'], df['Price'], label='Original Price')
+
+# Plot the 10-day moving average
+df['MA_10'] = df['Price'].rolling(window=10).mean()
+plt.plot(df['Date'], df['MA_10'], label='10-day Moving Average')
+
+# Plot the 50-day moving average
+df['MA_50'] = df['Price'].rolling(window=50).mean()
+plt.plot(df['Date'], df['MA_50'], label='50-day Moving Average')
+
+# Add labels and legend
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.legend()
+
+# Show the plot
+plt.show()
